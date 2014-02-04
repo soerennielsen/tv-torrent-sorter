@@ -1,0 +1,18 @@
+module.exports = {
+  // Plex TV show library directory
+  tvShowsDir : "/path/to/existing/shows",
+
+  // Size at which a file is assumed to be an episode
+  minFileSize : "100MB",
+
+  // Nodemailer config
+  mail : {
+    service : "GMail",
+    auth : {
+      user : "",
+      pass : ""
+    },
+    to : "",
+    from : ""
+  }
+};
