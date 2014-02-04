@@ -1,0 +1,18 @@
+{{# torrent }}
+{{ name }} completed at {{ time }}
+{{/ torrent }}
+
+
+File(s):
+
+
+{{# largeFiles }}
+{{ filename }}
+  * Show:    {{ show }}
+  * Season:  {{ season }}
+  * Moved:   {{# moved }}{{{ newLocation }}}{{/ moved }}
+  * Error:   {{ err }}
+
+-
+
+{{/ largeFiles }}

@@ -1,0 +1,19 @@
+{
+  "name": "torrent-sort",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "John Deerhake <jdeerhake@gmail.com>",
+  "license": "BSD",
+  "dependencies": {
+    "findit": "~1.1.0",
+    "path": "~0.4.9",
+    "nodemailer": "~0.6.0",
+    "mustache": "~0.8.1",
+    "lodash": "~2.4.1",
+    "async": "~0.2.10"
+  }
+}

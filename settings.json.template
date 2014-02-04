@@ -1,0 +1,18 @@
+{
+  // Plex TV show library directory
+  "tvShowsDir" : "/media/storage/media/TV/",
+
+  // Size at which a file is assumed to be an episode
+  "minFileSize" : "100MB",
+
+  // Nodemailer config
+  "mail" : {
+    "service" : "GMail",
+    "auth" : {
+      "user" : "",
+      "pass" : ""
+    },
+    "to" : "",
+    "from" : ""
+  }
+}
