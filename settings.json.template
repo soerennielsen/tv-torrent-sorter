@@ -1,6 +1,6 @@
 {
   // Plex TV show library directory
-  "tvShowsDir" : "/media/storage/media/TV/",
+  "tvShowsDir" : "/path/to/existing/shows",
 
   // Size at which a file is assumed to be an episode
   "minFileSize" : "100MB",
