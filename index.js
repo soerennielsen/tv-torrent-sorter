@@ -3,7 +3,7 @@
 var fs = require( 'fs' ),
   _ = require( 'lodash' ),
   async = require( 'async' ),
-  conf = require( './settings.json' ),
+  conf = require( './settings' ),
   helpers = require( './src/helpers' ),
   torrent = {
     appVersion : process.env.TR_APP_VERSION,

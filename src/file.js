@@ -1,6 +1,6 @@
 var _ = require( 'lodash' ),
   path = require( 'path' ),
-  conf = require( '../settings.json' );
+  conf = require( '../settings' );
 
 function File( conf ) {
   _.extend( this, conf );

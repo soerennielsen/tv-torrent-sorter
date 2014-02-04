@@ -1,5 +1,5 @@
 var mustache = require( 'mustache' ),
-  conf = require( '../settings.json' ),
+  conf = require( '../settings' ),
   mailer = require( 'nodemailer' ).createTransport('SMTP', {
     service : conf.mail.service,
     auth : conf.mail.auth
