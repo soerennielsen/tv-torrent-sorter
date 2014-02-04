@@ -28,6 +28,9 @@ module.exports = {
     sendEmail( data.torrent.name + ' finished downloading', mustache.render( tmpl.success, data ) );
   },
   err : function( err, data ) {
-    sendEmail( 'An error occurred with ' + data.torrent.name, JSON.stringify( err ) + '\n\n' + JSON.stringify( data ) );
+    sendEmail( 'An error occurred with ' + data.torrent.name,
+               'Error:\n' + JSON.stringify( err, null, 4 ) + '\n\n' +
+               'Data:\n'  + JSON.stringify( data, null, 4 )
+             );
   }
 };
