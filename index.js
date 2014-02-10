@@ -2,17 +2,17 @@
 
 var notify = require( './src/notify' );
 
+
+function save( obj, key ) {
+  return function( val ) {
+    obj[ key ] = val;
+    return val;
+  };
+}
+
 try {
   var conf = require( './settings' ),
     show = require( './src/show' );
-
-
-  function save( obj, key ) {
-    return function( val ) {
-      obj[ key ] = val;
-      return val;
-    };
-  }
 
   var state = {};
 
@@ -23,12 +23,12 @@ try {
     .then( require( './src/finder' ) )
     .then( require( './src/sort_files') )
     .then( require( './src/matcher') )
-    .then( function( files ) {
-      state.files = files;
-      return state;
-    } )
+    .then( save( state, 'files') )
     .then( require( './src/make_dirs' ) )
     .then( require( './src/move_files' ) )
+    .then( function() {
+      return state;
+    } )
     .done( notify.success, function( err ) {
       notify.err( err, state );
     });

@@ -9,5 +9,5 @@ module.exports = function( files ) {
       file.err.error = err;
       file.err.msg = 'Could not move file to new directory';
     });
-  }) ).then( files );
+  }) ).then( function() { return files; } );
 };

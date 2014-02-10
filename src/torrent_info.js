@@ -9,4 +9,6 @@ module.exports = function() {
   };
 
   torrent.location = require( 'path' ).resolve( torrent.dir, torrent.name );
+
+  return torrent;
 };

@@ -12,5 +12,5 @@ module.exports = function( files ) {
       .then( null, function() {
         return mkdir( show.newDir() );
       });
-  }) ).then( files );
+  }) ).then(function() { return files; });
 };
