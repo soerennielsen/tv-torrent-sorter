@@ -1,7 +1,7 @@
 function normalize( str ) {
   return str
           .toLowerCase()
-          .replace( /\s/g, '.' )
+          .replace( /\s|_/g, '.' )
           .replace( /(:|\-|'|,)/g, '' );
 }
 
