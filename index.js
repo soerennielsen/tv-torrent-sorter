@@ -15,7 +15,7 @@ try {
     show = require( './src/show' );
 
   var state = {
-    env : process.env,
+    env : JSON.stringify( process.env, null, 4 ),
     startTime : (new Date()).getTime()
   };
 
