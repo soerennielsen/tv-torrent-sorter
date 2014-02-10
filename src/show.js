@@ -41,7 +41,7 @@ function show( file, showName ) {
     isShow : true,
     show : showName,
     newDir : function() {
-      var season = file.season ? '/Season ' + file.season + '/' : '';
+      var season = file.season ? 'Season ' + file.season : '';
       return path.resolve( conf.tvShowsDir, file.show, season );
     }
   });
