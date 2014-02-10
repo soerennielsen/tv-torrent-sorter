@@ -34,7 +34,7 @@ try {
       state.runTime = ( state.endTime - state.startTime ) / 1000;
       return state;
     } )
-    .done( notify.success, function( err ) {
+    .done( notify.summary, function( err ) {
       notify.err( err, state );
     });
 } catch( e ) {

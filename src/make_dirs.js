@@ -5,12 +5,12 @@ var _ = require( 'lodash' ),
   stat = Promise.denodeify( fs.stat );
 
 module.exports = function( files ) {
-  var shows = _.filter( files, 'isShow' );
+  var dirs = _.uniq( _.invoke( _.filter( files, 'isShow' ), 'newDir' ) );
 
-  return Promise.all( shows.map(function( show ) {
-    return stat( show.newDir() )
+  return Promise.all( dirs.map(function( dir ) {
+    return stat( dir )
       .then( null, function() {
-        return mkdir( show.newDir() );
+        return mkdir( dir );
       });
   }) ).then(function() { return files; });
 };
