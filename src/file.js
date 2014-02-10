@@ -1,25 +1,21 @@
 var _ = require( 'lodash' ),
-  path = require( 'path' ),
-  conf = require( '../settings' );
+  path = require( 'path' );
 
 function File( conf ) {
-  _.extend( this, conf );
-}
 
-_.extend( File.prototype, {
-  oldDir : function() {
-    return this.currentDir;
-  },
-  newDir : function() {
-    var season = this.season ? '/Season ' + this.season + '/' : '';
-    return path.join( conf.tvShowsDir, this.show, season );
-  },
-  oldLocation : function() {
-    return this.location;
-  },
-  newLocation : function() {
-    return path.join( this.newDir(), this.filename );
-  }
-});
+  _.extend( conf, {
+    oldDir : function() {
+      return conf.currentDir;
+    },
+    oldLocation : function() {
+      return conf.location;
+    },
+    newLocation : function() {
+      return path.join( conf.newDir(), conf.filename );
+    }
+  });
+
+  return conf;
+}
 
 module.exports = File;

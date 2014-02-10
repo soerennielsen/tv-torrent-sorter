@@ -1,24 +1,32 @@
 var findit = require( 'findit' ),
   path = require( 'path' ),
-  File = require( './file' );
+  Promise = require( 'promise' ),
+  file = require( './file' );
 
-module.exports = function( dir, cb ) {
+module.exports = function( dir ) {
+  if( dir.location ) { dir = dir.location; }
+
   var files = [],
     finder = findit( dir );
-  finder.on( 'file', function( file, stat ) {
-    files.push( new File({
-      filename : path.basename( file ),
-      currentDir : path.dirname( file ),
-      location : file,
+
+  finder.on( 'file', function( fileloc, stat ) {
+    files.push( file({
+      filename : path.basename( fileloc ),
+      currentDir : path.dirname( fileloc ),
+      location : fileloc,
       size : stat.size
     }) );
   });
 
-  finder.on( 'end', function() {
-    cb( null, files.sort(function( a, b ) {
-      return b.size - a.size;
-    }) );
+  return new Promise(function( resolve, reject ) {
+    finder.on( 'end', function() {
+      if( files.length ) {
+        resolve( files.sort(function( a, b ) {
+          return b.size - a.size;
+        }) );
+      } else {
+        reject( 'No torrent files found' );
+      }
+    });
   });
-
-  return finder;
 };

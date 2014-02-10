@@ -1,6 +1,7 @@
 module.exports = {
-  // Plex TV show library directory
+  // Plex library directories
   tvShowsDir : "/path/to/existing/shows",
+  moviesDir : "/path/to/existing/movies",
 
   // Size at which a file is assumed to be an episode
   minFileSize : "100MB",

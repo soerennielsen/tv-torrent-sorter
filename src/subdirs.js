@@ -1,23 +1,23 @@
 var fs = require( 'fs' ),
-  async = require( 'async' );
+  path = require( 'path' ),
+  Promise = require( 'promise' ),
+  readdir = Promise.denodeify( fs.readdir ),
+  stat = Promise.denodeify( fs.stat );
 
+module.exports = function( dir ) {
+  var localData = {};
 
-module.exports = function( dir, cb ) {
-  async.waterfall([
-    fs.readdir.bind( null, dir ),
-    function( files, cb ) {
-      async.map( files.map(function( file ) {
-        return dir + '/' + file;
-      }), fs.stat, function(err, stats) {
-        cb( err, stats, files );
-      });
-    },
-    function( stats, files, cb ) {
-      cb( null, files.filter( function( file, i ) {
-        return stats[ i ].isDirectory();
+  return readdir( dir )
+    .then(function( files ) {
+      localData.files = files;
+      return Promise.all( files.map(function( file ) {
+        return stat( path.resolve( dir, file ) );
       }) );
-    }
-  ], function( err, dirs ) {
-    cb( err, dirs );
-  });
+    })
+    .then(function( stats ) {
+      return localData.files.filter(function( file, i ) {
+        return stats[ i ].isDirectory();
+      });
+    });
+
 };

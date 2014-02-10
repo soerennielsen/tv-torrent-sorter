@@ -10,5 +10,11 @@ module.exports = {
       };
 
     return Math.pow( 1024, pow[ unit ] ) * i;
+  },
+  normalize : function( str ) {
+    return str
+          .toLowerCase()
+          .replace( /\s|_/g, '.' )
+          .replace( /(:|\-|'|,)/g, '' );
   }
 };

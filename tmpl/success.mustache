@@ -6,14 +6,18 @@
 File(s):
 
 
-{{# largeFiles }}
+{{# files }}
 {{ filename }}
-  * Show:    {{ show }}
-  * Season:  {{ season }}
-  # Episode: {{ episode }}
-  * Moved:   {{# moved }}{{{ newLocation }}}{{/ moved }}
-  * Error:   {{ err }}
+  * Show:      {{ show }}
+  * Season:    {{ season }}
+  * Episode:   {{ episode }}
+  * Moved to:  {{{ newLocation }}}
+  {{# err }}
+  * Error:
+    - Message: {{ msg }}
+    {{ error }}
+  {{/ err }}
 
 -
 
-{{/ largeFiles }}
+{{/ files }}
