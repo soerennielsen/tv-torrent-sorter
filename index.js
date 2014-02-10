@@ -14,7 +14,9 @@ try {
   var conf = require( './settings' ),
     show = require( './src/show' );
 
-  var state = {};
+  var state = {
+    startTime : (new Date()).getTime()
+  };
 
   require( './src/subdirs' )( conf.tvShowsDir )
     .then( save( show, 'shows' ) )
@@ -27,6 +29,8 @@ try {
     .then( require( './src/make_dirs' ) )
     .then( require( './src/move_files' ) )
     .then( function() {
+      state.endTime = (new Date()).getTime();
+      state.runTime = ( state.endTime - state.startTime ) / 1000;
       return state;
     } )
     .done( notify.success, function( err ) {

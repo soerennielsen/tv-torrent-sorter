@@ -16,7 +16,7 @@ var episodeRegex = [
 ];
 
 function matchEpisode( show ) {
-  var name = normalize( show.fileName );
+  var name = normalize( show.filename );
 
   episodeRegex.forEach(function( r ) {
     var match = name.match( r );
