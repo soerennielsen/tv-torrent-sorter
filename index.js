@@ -40,7 +40,7 @@ try {
       var minSize = helpers.strToBytes( conf.minFileSize );
 
       if( !data.files ) {
-        return cb( 'No files found.', data );
+        return cb( new Error( 'No files found.' ), data );
       }
 
       data.largeFiles = data.files.filter(function( file ) {
@@ -48,7 +48,7 @@ try {
       });
 
       if( !data.largeFiles.length ) {
-        return cb( 'Largest file too small.', data );
+        return cb( new Error( 'Largest file too small.' ), data );
       }
 
       cb( null, data );
