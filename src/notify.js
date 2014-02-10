@@ -33,6 +33,8 @@ module.exports = {
   summary : function( data ) {
     var subject = data.torrent.name + ' finished downloading';
 
+    data.envjson = JSON.stringify( data.env, null, 4 );
+
     render( 'success', data )
       .then( sendEmail.bind( null, subject ) );
   },

@@ -3,7 +3,7 @@ var Promise = require( 'promise' ),
 
 
 module.exports = function( files ) {
-  Promise.all( files.map(function( file ) {
+  return Promise.all( files.map(function( file ) {
     return rename( file.oldLocation(), file.newLocation() ).then( null, function( err ) {
       file.err = file.err || {};
       file.err.error = err;

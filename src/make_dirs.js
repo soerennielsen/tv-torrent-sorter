@@ -7,7 +7,7 @@ var _ = require( 'lodash' ),
 module.exports = function( files ) {
   var shows = _.filter( files, 'isShow' );
 
-  Promise.all( shows.map(function( show ) {
+  return Promise.all( shows.map(function( show ) {
     return stat( show.newDir() )
       .then( null, function() {
         return mkdir( show.newDir() );
