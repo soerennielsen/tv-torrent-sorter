@@ -107,5 +107,5 @@ try {
   });
 
 } catch(e) {
-  require( './src/mail' ).err({ name : e.name, msg : e.messagem, stack : e.stack }, { torrent : torrent });
+  require( './src/mail' ).err( e, { torrent : torrent } );
 }

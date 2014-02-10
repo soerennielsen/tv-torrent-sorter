@@ -14,8 +14,13 @@ function parseSeason( str ) {
 
   return regs.map( function( reg ) {
     var match = nstr.match( reg );
-    if( match ) {
-      return parseInt( match[ 1 ], 10 );
+    if( match && match.length === 3 ) {
+      return {
+        s : parseInt( match[ 1 ], 10 ),
+        e : parseInt( match[ 2 ], 10 )
+      };
+    } else if( match && match.length === 2 ) {
+      return { s : parseInt( match[ 1 ], 10 ) };
     }
   } ).filter(Boolean)[0];
 }
@@ -27,7 +32,9 @@ module.exports = function( file, shows ) {
     if( normalizedFilename.indexOf( normalizedShow ) === -1 ) {
       return false;
     } else {
-      file.season = parseSeason( file.filename );
+      var info = parseSeason( file.filename );
+      file.season = info.s;
+      file.episode = info.e;
       file.show =  shows[ i ];
       return true;
     }
