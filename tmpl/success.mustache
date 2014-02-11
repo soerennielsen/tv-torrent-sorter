@@ -2,15 +2,15 @@
 {{ name }} completed at {{ time }}
 {{/ torrent }}
 
-
 File(s):
 
-
 {{# files }}
-{{ filename }}
+- {{ filename }}
+  {{# isShow }}
   * Show:      {{ show }}
   * Season:    {{ season }}
   * Episode:   {{ episode }}
+  {{/ isShow }}
   * Moved to:  {{{ newLocation }}}
   {{# err }}
   * Error:
@@ -18,10 +18,7 @@ File(s):
     {{ error }}
   {{/ err }}
 
--
-
 {{/ files }}
 
 
-
-run in {{ runTime }}s
+run time {{ runTime }}s
