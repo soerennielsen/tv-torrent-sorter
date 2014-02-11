@@ -6,7 +6,7 @@ var _ = require( 'lodash' ),
 
 var episodeRegex = [
   //2014.03.15
-  /\d{4}.\d{1,2}.\d{1,2}/,
+  /\d{4}[\.\-_]\d{1,2}[\.\-_]\d{1,2}/,
 
   //5x13
   /(\d{1,3})x(\d{1,3})/i,
@@ -58,7 +58,7 @@ show.fromFile = function( file ) {
 
   file.matchedShows = matched;
 
-  if( matched ) {
+  if( Array.isArray( matched ) && matched.length ) {
     return( show( file, matched[ 0 ] ) );
   } else {
     return false;
