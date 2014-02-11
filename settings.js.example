@@ -1,19 +1,20 @@
 module.exports = {
   // Plex library directories
-  tvShowsDir : "/path/to/existing/shows",
-  moviesDir : "/path/to/existing/movies",
+  tvShowsDir : '/path/to/existing/shows',
+  moviesDir : '/path/to/existing/movies',
 
-  // Size at which a file is assumed to be an episode
-  minFileSize : "100MB",
+  // Size at which a file is assumed to of worth
+  minFileSize : '100MB',
+  validVideoExt : [ 'mkv', '3gp', 'avi', 'mp4', 'mpg', 'mp3', 'flv', 'mov', 'asf', 'asx', 'divx', 'rm', 'wmv', 'swf' ],
 
   // Nodemailer config
   mail : {
-    service : "GMail",
+    service : 'GMail',
     auth : {
-      user : "",
-      pass : ""
+      user : '',
+      pass : ''
     },
-    to : "",
-    from : ""
+    to : '',
+    from : ''
   }
 };
