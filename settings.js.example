@@ -5,7 +5,10 @@ module.exports = {
 
   // Size at which a file is assumed to of worth
   minFileSize : '100MB',
-  validVideoExt : [ 'mkv', '3gp', 'avi', 'mp4', 'mpg', 'mp3', 'flv', 'mov', 'asf', 'asx', 'divx', 'rm', 'wmv', 'swf' ],
+  validVideoExt : [ 'mkv', '3gp', 'avi', 'mp4', 'mpg',
+                    'mp3', 'flv', 'mov', 'asf', 'asx',
+                    'wmv', 'swf', 'ogg', 'rm', 'divx',
+                    'mpeg' ],
 
   // Nodemailer config
   mail : {
