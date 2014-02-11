@@ -1,16 +1,51 @@
-var conf = require( '../settings' ),
-  helpers = require( './helpers' );
-
 module.exports = function( files ) {
-  var minSize = helpers.strToBytes( conf.minFileSize );
+  return files.sort(function( a, b ) {
+    if( !a.isShow && !b.isShow ) {
+      return 0;
+    }
 
-  var largeFiles = files.filter(function( file ) {
-    return file.size > minSize;
+    if( !a.isShow ) {
+      return 1;
+    }
+
+    if( !b.isShow ) {
+      return -1;
+    }
+
+    if( a.show !== b.show ) {
+      return a.show < b.show ? -1 : 1;
+    }
+
+    if( !a.season && !b.season ) {
+      return 0;
+    }
+
+    if( !a.season ) {
+      return 1;
+    }
+
+    if( !b.season ) {
+      return -1;
+    }
+
+    if( a.season === b.season ) {
+
+      if( !a.episode && !b.episode ) {
+        return 0;
+      }
+
+      if( !a.episode ) {
+        return 1;
+      }
+
+      if( !b.episode ) {
+        return -1;
+      }
+
+      return a.episode - b.episode;
+    }
+
+    return a.season - b.season;
+
   });
-
-  if( largeFiles.length === 0 ) {
-    throw 'No files are big enough';
-  }
-
-  return largeFiles;
 };
