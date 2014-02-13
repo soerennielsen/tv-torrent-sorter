@@ -2,12 +2,16 @@ An error occurred with {{ torrent.name }}
 
 {{# error }}
 Error:
+{{# name }}
   Name:     {{ name }}
   Message:  {{{ message }}}
 
 Stack:
   {{{ stack }}}
-
+{{/ name }}
+{{^ name }}
+  {{ . }}
+{{/ name }}
 {{/ error }}
 
 

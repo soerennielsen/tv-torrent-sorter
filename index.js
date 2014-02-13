@@ -36,6 +36,7 @@ try {
       return state;
     } )
     .done( notify.summary, function( err ) {
+      state.err = err;
       notify.err( err, state );
     });
 } catch( e ) {
