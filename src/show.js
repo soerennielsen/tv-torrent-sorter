@@ -34,8 +34,17 @@ function show( file, showName ) {
     newDir : function() {
       var season = file.season ? 'Season ' + file.season : '';
       return path.resolve( conf.tvShowsDir, file.show, season );
+    },
+    normalFileName : function() {
+      return file.show + '.S' + file.season + 'E' + file.episode + '.' + file.ext();
     }
   });
+
+  if( conf.renameFiles && file.season && file.episode ) {
+    file.newLocation = function() {
+      return path.resolve( file.newDir(), file.normalFileName() );
+    };
+  }
 
   return file;
 }

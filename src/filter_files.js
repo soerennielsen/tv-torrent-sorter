@@ -10,13 +10,7 @@ function isMinSize( file ) {
 }
 
 function isVideoExt( file ) {
-  var ext = file.filename.match( /\.([a-zA-Z0-9]{2,4})$/ );
-
-  if( ext && ext.length === 2 ) {
-    return VIDEO_EXT.indexOf( ext[1].toLowerCase() ) !== -1;
-  }
-
-  return false;
+  return VIDEO_EXT.indexOf( file.ext() ) !== -1;
 }
 
 

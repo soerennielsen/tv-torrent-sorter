@@ -12,6 +12,14 @@ function File( conf ) {
     },
     newLocation : function() {
       return path.join( conf.newDir(), conf.filename );
+    },
+    ext : function() {
+      var match = conf.filename.match( /\.([a-zA-Z0-9]{2,4})$/ );
+      if( match && match.length === 2 ) {
+        return match[ 1 ];
+      } else {
+        return false;
+      }
     }
   });
 
