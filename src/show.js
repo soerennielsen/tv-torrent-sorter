@@ -4,16 +4,7 @@ var _ = require( 'lodash' ),
   conf = require( '../settings' );
 
 
-var episodeRegex = [
-  //2014.03.15
-  /\d{4}[\.\-_]\d{1,2}[\.\-_]\d{1,2}/,
-
-  //5x13
-  /(\d{1,3})x(\d{1,3})/i,
-
-  //S01E01
-  /s(\d{1,3})e(\d{1,3})/i
-];
+var episodeRegex = conf.episodeRegexes;
 
 function matchEpisode( show ) {
   var name = normalize( show.filename );
