@@ -19,7 +19,7 @@ function render( name, data ) {
 
 module.exports = {
   success : function( data ) {
-    var subject = data.torrent.name + ' finished downloading';
+    var subject = 'Torrent Sorter: ' + data.torrent.name + ' finished downloading';
 
     render( 'success', data )
       .then( function( msg ) {
@@ -32,7 +32,7 @@ module.exports = {
   },
   err : function( err, data ) {
     var torrentName = data && data.torrent && data.torrent.name,
-      subject = 'An error occurred' + ( torrentName ? ' with ' + torrentName : '' );
+      subject = 'Torrent Sorter: An error occurred' + ( torrentName ? ' with ' + torrentName : '' );
 
     data.dump = JSON.stringify( data, null, 4 );
     data.error = err;
