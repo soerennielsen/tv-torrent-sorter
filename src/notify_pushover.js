@@ -2,9 +2,9 @@ var mustache = require( 'mustache' ),
   path = require( 'path' ),
   conf = require( '../settings' ),
   readFile = require( 'promise' ).denodeify( require( 'fs' ).readFile ),
-  mailer = require( 'nodemailer' ).createTransport('SMTP', {
-    service : conf.mail.service,
-    auth : conf.mail.auth
+  Pushover = require( 'pushover-notifications' ),
+  push = new Pushover({
+    token : conf.pushover.appKey
   });
 
 
@@ -16,25 +16,19 @@ function render( name, data ) {
 }
 
 
-function sendEmail( subject, body ) {
-  mailer.sendMail({
-    from: conf.mail.from,
-    to: conf.mail.to,
-    subject: subject,
-    text: body,
-  }, function(){
-    mailer.close();
-  });
-}
-
-
 
 module.exports = {
-  summary : function( data ) {
+  success : function( data ) {
     var subject = data.torrent.name + ' finished downloading';
 
     render( 'success', data )
-      .then( sendEmail.bind( null, subject ) );
+      .then( function( msg ) {
+        push.send({
+          message : msg,
+          title : subject,
+          user : conf.pushover.userKeys[0]
+        });
+      } );
   },
   err : function( err, data ) {
     var torrentName = data && data.torrent && data.torrent.name,
@@ -44,6 +38,12 @@ module.exports = {
     data.error = err;
 
     render( 'error', data )
-      .then( sendEmail.bind( null, subject ) );
+      .then( function(msg) {
+        push.send({
+          message : msg,
+          title : subject,
+          user : conf.pushover.userKeys[0]
+        });
+      } );
   }
 };

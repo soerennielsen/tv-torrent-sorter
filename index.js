@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-var notify = require( './src/notify' );
-
+var conf = require( './settings' ),
+    notify = require( './src/notify_' + conf.notifyType ),
+    show = require( './src/show' );
 
 function save( obj, key ) {
   return function( val ) {
@@ -11,9 +12,6 @@ function save( obj, key ) {
 }
 
 try {
-  var conf = require( './settings' ),
-    show = require( './src/show' );
-
   var state = {
     env : JSON.stringify( process.env, null, 4 ),
     startTime : (new Date()).getTime()
@@ -35,7 +33,7 @@ try {
       state.runTime = ( state.endTime - state.startTime ) / 1000;
       return state;
     } )
-    .done( notify.summary, function( err ) {
+    .done( notify.success, function( err ) {
       state.err = err;
       notify.err( err, state );
     });

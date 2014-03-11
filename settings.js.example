@@ -26,6 +26,15 @@ module.exports = {
 
   ],
 
+  // pushover or email
+  notifyType : 'pushover',
+
+  // Pushover config
+  pushover : {
+    appKey : 'user_key',
+    userKeys : [ 'client_key' ]
+  },
+
   // Nodemailer config
   mail : {
     service : 'GMail',
