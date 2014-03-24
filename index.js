@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var _ = require( 'lodash' ),
-    conf = _.merge( {}, require( './settings' ), require('./defaults') ),
+    conf = _.merge( {}, require('./defaults'), require( './settings' ) ),
     notify = require( './src/notify_' + conf.notifyType ),
     show = require( './src/show' );
 
