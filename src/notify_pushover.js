@@ -1,6 +1,6 @@
 var mustache = require( 'mustache' ),
   path = require( 'path' ),
-  conf = require( '../settings' ),
+  conf = require( './config' ),
   readFile = require( 'promise' ).denodeify( require( 'fs' ).readFile ),
   Pushover = require( 'pushover-notifications' ),
   push = new Pushover({

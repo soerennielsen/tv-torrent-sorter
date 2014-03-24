@@ -1,5 +1,5 @@
 var _ = require( 'lodash' ),
-  conf = require( '../settings' );
+  conf = require( './config' );
 
 function movie( file ) {
 

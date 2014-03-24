@@ -1,7 +1,7 @@
 var _ = require( 'lodash' ),
   path = require( 'path' ),
   normalize = require( './helpers' ).normalize,
-  conf = require( '../settings' );
+  conf = require( './config' );
 
 
 var episodeRegex = conf.episodeRegexes;

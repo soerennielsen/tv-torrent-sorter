@@ -1,4 +1,4 @@
-var conf = require( '../settings' ),
+var conf = require( './config' ),
   helpers = require( './helpers' );
 
 var VIDEO_EXT = conf.validVideoExt.map(function( ext ) { return ext.toLowerCase(); }),
