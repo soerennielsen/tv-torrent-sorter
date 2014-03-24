@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-var conf = require( './settings' ),
+var _ = require( 'lodash' ),
+    conf = _.merge( {}, require( './settings' ), require('./defaults') ),
     notify = require( './src/notify_' + conf.notifyType ),
     show = require( './src/show' );
 
@@ -17,7 +18,7 @@ try {
     startTime : (new Date()).getTime()
   };
 
-  require( './src/subdirs' )( conf.tvShowsDir )
+  require( './src/get_show_names' )( conf.tvShowsDir, conf.showRSS )
     .then( save( show, 'shows' ) )
     .then( require( './src/torrent_info' ) )
     .then( save( state, 'torrent' ) )
