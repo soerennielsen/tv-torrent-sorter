@@ -1,7 +1,7 @@
 module.exports = {
   // Plex library directories
-  tvShowsDir : '/path/to/existing/shows',
-  moviesDir : '/path/to/existing/movies',
+  showDirs : '/path/to/existing/shows',
+  movieDirs : '/path/to/existing/movies',
   renameFiles : false,
 
   // pushover, email, or log

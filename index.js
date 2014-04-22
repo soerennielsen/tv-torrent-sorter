@@ -17,7 +17,7 @@ try {
     startTime : (new Date()).getTime()
   };
 
-  require( './src/get_show_names' )( conf.tvShowsDir, conf.showRSS )
+  require( './src/get_show_names' )( [].concat( conf.showDirs ), conf.showRSS ? conf.showRSS : false )
     .then( save( show, 'shows' ) )
     .then( require( './src/torrent_info' ) )
     .then( save( state, 'torrent' ) )
