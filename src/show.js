@@ -25,6 +25,11 @@ function matchEpisode( show ) {
   });
 }
 
+function baseDir( file ) {
+  var existingBaseDir = conf._tsShowNames[ file.show ];
+  return existingBaseDir ? existingBaseDir : conf.showDirs[ 0 ];
+}
+
 function show( file, showName ) {
   matchEpisode( file );
 
@@ -33,7 +38,7 @@ function show( file, showName ) {
     show : showName,
     newDir : function() {
       var season = file.season ? 'Season ' + file.season : '';
-      return path.resolve( conf.tvShowsDir, file.show, season );
+      return path.resolve( baseDir( file ), file.show, season );
     },
     normalFileName : function() {
       return file.show + '.S' + file.season + 'E' + file.episode + '.' + file.ext();
