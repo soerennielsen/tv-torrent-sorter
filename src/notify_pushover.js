@@ -1,4 +1,5 @@
 var mustache = require( 'mustache' ),
+  _ = require( 'lodash' ),
   path = require( 'path' ),
   conf = require( './config' ),
   readFile = require( 'promise' ).denodeify( require( 'fs' ).readFile ),
