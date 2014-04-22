@@ -15,6 +15,14 @@ function render( name, data ) {
     });
 }
 
+function sendToAll( msgConf ) {
+  conf.pushover.userKeys.map(function( key ) {
+    push.send( _.extend({
+      user : key
+    }, msgConf ) );
+  });
+}
+
 
 
 module.exports = {
@@ -23,10 +31,9 @@ module.exports = {
 
     render( 'success', data )
       .then( function( msg ) {
-        push.send({
+        sendToAll({
           message : msg,
-          title : subject,
-          user : conf.pushover.userKeys[0]
+          title : subject
         });
       } );
   },
@@ -39,13 +46,10 @@ module.exports = {
 
     render( 'error', data )
       .then( function(msg) {
-        conf.pushover.userKeys.map(function( key ) {
-          push.send({
+          sendToAll({
             message : msg,
-            title : subject,
-            user : key
+            title : subject
           });
-        });
       } );
   }
 };
