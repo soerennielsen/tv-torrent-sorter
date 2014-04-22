@@ -33,6 +33,7 @@ try {
       state.runTime = ( state.endTime - state.startTime ) / 1000;
       return state;
     } )
+    .then( require( './src/clean_up' ) )
     .done( notify.success, function( err ) {
       state.err = err;
       notify.err( err, state );

@@ -19,6 +19,7 @@
     "pushover-notifications": "~0.1.8",
     "request": "~2.34.0",
     "xml2js": "~0.4.1",
-    "mkdirp": "~0.3.5"
+    "mkdirp": "~0.3.5",
+    "rimraf": "~2.2.6"
   }
 }
