@@ -39,10 +39,12 @@ module.exports = {
 
     render( 'error', data )
       .then( function(msg) {
-        push.send({
-          message : msg,
-          title : subject,
-          user : conf.pushover.userKeys[0]
+        conf.pushover.userKeys.map(function( key ) {
+          push.send({
+            message : msg,
+            title : subject,
+            user : key
+          });
         });
       } );
   }
