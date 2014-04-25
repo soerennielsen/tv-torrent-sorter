@@ -14,9 +14,13 @@ function getShowNames( xml ) {
   return _.uniq( _.flatten( names ) );
 }
 
+function failSilently() {
+  return [];
+}
+
 
 module.exports = function( url ) {
   return request( url )
           .then( parse )
-          .then( getShowNames );
+          .then( getShowNames, failSilently );
 };
