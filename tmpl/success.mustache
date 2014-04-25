@@ -2,7 +2,7 @@ Completed download!
 
 {{# files }}
   {{# isShow }}
-  - {{ show }} {{# season }}S{{ . }}{{/ season}}{{# episode }}E{{ . }}{{/ episode }}
+  - {{ stylizedName }}
   {{/ isShow }}
   {{^ isShow }}
   - Movie: {{ filename }}

@@ -42,6 +42,13 @@ function show( file, showName ) {
     },
     normalFileName : function() {
       return file.show + '.S' + file.season + 'E' + file.episode + '.' + file.ext();
+    },
+    stylizedName : function() {
+      if( !file.season && file.season !== 0 ) {
+        return file.show + ' ' + file.episode;
+      } else {
+        return file.show + ' S' + file.season + 'E' + file.episode;
+      }
     }
   });
 
