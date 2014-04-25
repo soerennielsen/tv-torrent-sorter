@@ -1,17 +1,12 @@
-{{# torrent }}
-{{ name }} completed at {{ time }}
-{{/ torrent }}
-
-File(s):
+Completed download!
 
 {{# files }}
-- {{ filename }}
   {{# isShow }}
-  * Show:      {{ show }}
-  * Season:    {{ season }}
-  * Episode:   {{ episode }}
+  - {{ show }} {{# season }}S{{ . }}{{/ season}}{{# episode }}E{{ . }}{{/ episode }}
   {{/ isShow }}
-  * Moved to:  {{{ newLocation }}}
+  {{^ isShow }}
+  - Movie: {{ filename }}
+  {{/ isShow }}
   {{# err }}
   * Error:
     - Message: {{ msg }}
