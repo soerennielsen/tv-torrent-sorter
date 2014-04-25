@@ -1,12 +1,13 @@
-Completed download!
+Download completed:
 
 {{# files }}
-  - {{ stylizedName }}
-  {{# err }}
-    * Error:
-      - Message: {{ msg }}
-      {{ error }}
-  {{/ err }}
+{{ stylizedName }}
+{{# err }}
+  - Issue with this file:
+    {{ msg }}
+    {{ error }}
+
+{{/ err }}
 {{/ files }}
 
 
