@@ -1,18 +1,12 @@
 Completed download!
 
 {{# files }}
-  {{# isShow }}
   - {{ stylizedName }}
-  {{/ isShow }}
-  {{^ isShow }}
-  - Movie: {{ filename }}
-  {{/ isShow }}
   {{# err }}
-  * Error:
-    - Message: {{ msg }}
-    {{ error }}
+    * Error:
+      - Message: {{ msg }}
+      {{ error }}
   {{/ err }}
-
 {{/ files }}
 
 

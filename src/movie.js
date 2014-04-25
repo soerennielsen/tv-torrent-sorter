@@ -8,6 +8,9 @@ function movie( file ) {
     newDir : function() {
       // Don't know how to handle multiple movie dirs
       return conf.movieDirs[ 0 ];
+    },
+    stylizedName : function() {
+      return 'Movie: ' + file.filename;
     }
   });
 
