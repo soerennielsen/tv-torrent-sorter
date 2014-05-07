@@ -2,10 +2,7 @@
 
 var conf = require( './src/config' ),
     notify = require( './src/notify_' + conf.notifyType ),
-    show = require( './src/show' ),
-    log = require( './lib/log' );
-
-log.info( {}, 'Run started' );
+    show = require( './src/show' );
 
 function save( obj, key ) {
   return function( val ) {
@@ -15,9 +12,13 @@ function save( obj, key ) {
 }
 
 try {
+  var log = require( './lib/log' );
+
   var state = {
     startTime : (new Date()).getTime()
   };
+
+  log.info( state, 'Run started' );
 
   require( './src/get_show_names' )( conf.showDirs, conf.showRSS )
     .then( save( show, 'shows' ) )
@@ -44,7 +45,7 @@ try {
       log.info( state, 'End state' );
     });
 } catch( e ) {
-  log.error( e, 'Finished with error state' );
   notify.err( e, state );
-  log.info( state, 'End state' );
+  //log.error( e, 'Finished with error state' );
+  //log.info( state, 'End state' );
 }
