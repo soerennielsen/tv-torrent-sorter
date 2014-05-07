@@ -2,7 +2,8 @@
 
 var conf = require( './src/config' ),
     notify = require( './src/notify_' + conf.notifyType ),
-    show = require( './src/show' );
+    show = require( './src/show' ),
+    log = require( './lib/log' );
 
 function save( obj, key ) {
   return function( val ) {
@@ -12,8 +13,6 @@ function save( obj, key ) {
 }
 
 try {
-  var log = require( './lib/log' );
-
   var state = {
     startTime : (new Date()).getTime()
   };
@@ -45,7 +44,7 @@ try {
       log.info( state, 'End state' );
     });
 } catch( e ) {
+  log.error( e, 'Finished with error state' );
+  log.info( state, 'End state' );
   notify.err( e, state );
-  //log.error( e, 'Finished with error state' );
-  //log.info( state, 'End state' );
 }
