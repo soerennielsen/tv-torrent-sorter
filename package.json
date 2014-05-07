@@ -10,7 +10,6 @@
   "license": "BSD",
   "dependencies": {
     "findit": "~1.1.0",
-    "path": "~0.4.9",
     "nodemailer": "~0.6.0",
     "mustache": "~0.8.1",
     "lodash": "~2.4.1",
