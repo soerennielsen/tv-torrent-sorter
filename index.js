@@ -2,7 +2,10 @@
 
 var conf = require( './src/config' ),
     notify = require( './src/notify_' + conf.notifyType ),
-    show = require( './src/show' );
+    show = require( './src/show' ),
+    log = require( './lib/log' );
+
+log.info( {}, 'Run started' );
 
 function save( obj, key ) {
   return function( val ) {
@@ -13,7 +16,6 @@ function save( obj, key ) {
 
 try {
   var state = {
-    env : JSON.stringify( process.env, null, 4 ),
     startTime : (new Date()).getTime()
   };
 
@@ -28,16 +30,21 @@ try {
     .then( save( state, 'files') )
     .then( require( './src/make_dirs' ) )
     .then( require( './src/move_files' ) )
-    .then( function() {
+    .then(function() {
       state.endTime = (new Date()).getTime();
       state.runTime = ( state.endTime - state.startTime ) / 1000;
       return state;
-    } )
+    })
     .then( require( './src/clean_up' ) )
-    .done( notify.success, function( err ) {
-      state.err = err;
+    .then( notify.success, function( err ) {
+      log.error( err, 'Finished with error state' );
       notify.err( err, state );
+    })
+    .then(function() {
+      log.info( state, 'End state' );
     });
 } catch( e ) {
+  log.error( e, 'Finished with error state' );
   notify.err( e, state );
+  log.info( state, 'End state' );
 }

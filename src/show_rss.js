@@ -1,7 +1,8 @@
 var _ = require( 'lodash' ),
   promise = require( 'promise' ),
   request = promise.denodeify( require( 'request' ).get ),
-  parseXML = promise.denodeify( require('xml2js').parseString );
+  parseXML = promise.denodeify( require('xml2js').parseString ),
+  log = require( '../lib/log' );
 
 
 function parse( response ) {
@@ -22,5 +23,6 @@ function failSilently() {
 module.exports = function( url ) {
   return request( url )
           .then( parse )
-          .then( getShowNames, failSilently );
+          .then( getShowNames, failSilently )
+          .then( log.promise( 'info', 'Got show names from showRSS feed' ) );
 };

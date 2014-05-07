@@ -1,7 +1,8 @@
 var findit = require( 'findit' ),
   path = require( 'path' ),
   Promise = require( 'promise' ),
-  file = require( './file' );
+  file = require( './file' ),
+  log = require( '../lib/log' );
 
 module.exports = function( dir ) {
   if( dir.location ) { dir = dir.location; }
@@ -10,12 +11,14 @@ module.exports = function( dir ) {
     finder = findit( dir );
 
   finder.on( 'file', function( fileloc, stat ) {
-    files.push( file({
+    var fstat = {
       filename : path.basename( fileloc ),
       currentDir : path.dirname( fileloc ),
       location : fileloc,
       size : stat.size
-    }) );
+    };
+    log.info({ content : fstat }, 'Found torrent file' );
+    files.push( file( fstat ) );
   });
 
   return new Promise(function( resolve, reject ) {
@@ -25,6 +28,7 @@ module.exports = function( dir ) {
           return b.size - a.size;
         }) );
       } else {
+        log.error( 'No torrent files found' );
         reject( 'No torrent files found' );
       }
     });

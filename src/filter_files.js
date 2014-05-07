@@ -1,5 +1,6 @@
 var conf = require( './config' ),
-  helpers = require( './helpers' );
+  helpers = require( './helpers' ),
+  log = require( '../lib/log' );
 
 var VIDEO_EXT = conf.validVideoExt.map(function( ext ) { return ext.toLowerCase(); }),
  minSize = helpers.strToBytes( conf.minFileSize );
@@ -16,9 +17,17 @@ function isVideoExt( file ) {
 
 module.exports = function( files ) {
 
-  var vidFiles = files
-                    .filter( isMinSize )
-                    .filter( isVideoExt );
+  var vidFiles = files.filter( isMinSize );
+
+  if( vidFiles.length ) {
+    log.info({ content : vidFiles }, 'Found large files' );
+  }
+
+  vidFiles = vidFiles.filter( isVideoExt );
+
+  if( vidFiles.length ) {
+    log.info({ content : vidFiles }, 'Found large video files' );
+  }
 
   if( vidFiles.length === 0 ) {
     throw 'No files are big enough or have a video extension';
