@@ -6,6 +6,13 @@ var _ = require( 'lodash' ),
 
 var episodeRegex = conf.episodeRegexes;
 
+function longest( arr ) {
+  return arr.sort(function( a, b ) {
+    return b.length - a.length;
+  })[ 0 ];
+}
+
+
 function matchEpisode( show ) {
   var name = normalize( show.filename );
 
@@ -71,7 +78,7 @@ show.fromFile = function( file ) {
   file.matchedShows = matched;
 
   if( Array.isArray( matched ) && matched.length ) {
-    return( show( file, matched[ 0 ] ) );
+    return( show( file, longest( matched ) ) );
   } else {
     return false;
   }
